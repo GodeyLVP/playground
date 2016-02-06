@@ -839,7 +839,7 @@ public OnPlayerCommandText(playerid, cmdtext[]) {
     {
         SendClientMessage(playerid, COLOR_YELLOW, "These are the animation commands:");
         SendClientMessage(playerid, COLOR_WHITE, "/fu, /smoke, /haha, /wank, /vomit, /handsup, /sit, /kiss,");
-        SendClientMessage(playerid, COLOR_WHITE, "/bitchslap, /piss, /wave, /lay, /dance.");
+        SendClientMessage(playerid, COLOR_WHITE, "/bitchslap, /piss, /wave, /lay, /dance, /swim.");
         SendClientMessage(playerid, COLOR_WHITE, "To end an animation, press the enter/leave vehicle key.");
 
         return 1;
@@ -958,6 +958,11 @@ public OnPlayerCommandText(playerid, cmdtext[]) {
         {
             ApplyAnimation(playerid,"FOOD","EAT_Vomit_P",4.1,0,1,1,0,0);
             iPlayerAnimation[playerid] = true;
+            return 1;
+        }
+        if (strcmp(cmd, "/swim", true ) == 0)
+        {
+            ApplyAnimation(playerid, "SWIM", "Swim_Breast", 4.1, 0, 1, 1, 1, 1, 1);
             return 1;
         }
         if(strcmp(cmd, "/bitchslap", true) == 0)
