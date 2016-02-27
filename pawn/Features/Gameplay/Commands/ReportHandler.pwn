@@ -69,8 +69,7 @@ class ReportHandler {
         }
 
         if (Player(playerId)->isAdministrator() == false) {
-            format(report, sizeof(report), "Your report has been delivered to the crew: {FFFFFF}Suspected player: %s - Cheat/reason: %s",
-                suspectedPlayer, params[parameterOffset]);
+            format(report, sizeof(report), "Your report has been delivered to the crew. Please wait!");
             SendClientMessage(playerId, Color::Success, report);
         }
 
