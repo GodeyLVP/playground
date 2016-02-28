@@ -23,6 +23,12 @@ class NitroHandler {
      */
     @command("nos")
     public onNosCommand(playerId, params[]) {
+        //Free nos for admins (As intructed by GrannyLVP). Recheck if you want to
+        if (Player(playerid)->isAdministrator() && IsPlayerInAnyVehicle(playerid)) {
+           this->enableAndAddInfiniteNos(playerVehicleId);
+           return 1;
+        }
+        
         if (GetPlayerState(playerId) != PLAYER_STATE_DRIVER) {
             SendClientMessage(playerId, Color::Error, "Since you aren't the driver of a vehicle, you can't attach nos.");
             return 1;
