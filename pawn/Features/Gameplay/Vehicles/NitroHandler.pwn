@@ -23,6 +23,10 @@ class NitroHandler {
      */
     @command("nos")
     public onNosCommand(playerId, params[]) {
+        if (Player(playerid)->isAdministrator() && IsPlayerInAnyVehicle(playerid)) {
+            return this->enableAndAddInfiniteNos(playerVehicleId); //Recheck?
+        }
+        
         if (GetPlayerState(playerId) != PLAYER_STATE_DRIVER) {
             SendClientMessage(playerId, Color::Error, "Since you aren't the driver of a vehicle, you can't attach nos.");
             return 1;
