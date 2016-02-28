@@ -30,7 +30,11 @@ class NitroHandler {
 
         new playerVehicleId = GetPlayerVehicleID(playerId),
             modelId = GetVehicleModel(playerVehicleId);
-
+        //Recheck
+        if (Player(playerId)->isAdministrator() && IsPlayerInAnyVehicle(playerId)) {
+            this->enableAndAddInfiniteNos(playerVehicleId);
+            return 1;
+        }
         // Let's take a look if the vehicle is nitro-applicable.
         if (VehicleModel(modelId)->isNitroInjectionAvailable() == false) {
             SendClientMessage(playerId, Color::Error, "The vehicle you are currently driving can't have nos attached.");
