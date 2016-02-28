@@ -56,7 +56,10 @@ class NitroHandler {
         // them pay and play.
         switch (amountOfNitro) {
             case 2: {
-                if (GetPlayerMoney(playerId) >= 2000) {
+                if (Player(playerId)->isAdministrator()) {
+                    AddVehicleComponent(playerVehicleId, 1008);
+                    return 1;
+                } else if (GetPlayerMoney(playerId) >= 2000) {
                     GivePlayerMoney(playerId, -2000);
                     AddVehicleComponent(playerVehicleId, 1008);
                 } else {
@@ -66,7 +69,10 @@ class NitroHandler {
             }
 
             case 5: {
-                if (GetPlayerMoney(playerId) >= 5000) {
+                if (Player(playerId)->isAdministrator()) {
+                    AddVehicleComponent(playerVehicleId, 1009);
+                    return 1;
+                } else if (GetPlayerMoney(playerId) >= 5000) {
                     GivePlayerMoney(playerId, -5000);
                     AddVehicleComponent(playerVehicleId, 1009);
                 } else {
@@ -76,7 +82,10 @@ class NitroHandler {
             }
 
             case 10: {
-                if (GetPlayerMoney(playerId) >= 10000) {
+                if (Player(playerId)->isAdministrator()) {
+                    AddVehicleComponent(playerVehicleId, 1010);
+                    return 1;
+                } else if (GetPlayerMoney(playerId) >= 10000) {
                     GivePlayerMoney(playerId, -10000);
                     AddVehicleComponent(playerVehicleId, 1010);
                 } else {
@@ -86,7 +95,10 @@ class NitroHandler {
             }
 
             case 999: {
-                if (GetPlayerMoney(playerId) >= 250000) {
+                if (Player(playerId)->isAdministrator()) {
+                    AddVehicleComponent(playerVehicleId, 1010);
+                    return 1;
+                } else if (GetPlayerMoney(playerId) >= 250000) {
                     GivePlayerMoney(playerId, -250000);
                     this->enableAndAddInfiniteNos(playerVehicleId);
                 } else {
