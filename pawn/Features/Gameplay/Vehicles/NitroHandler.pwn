@@ -23,7 +23,9 @@ class NitroHandler {
      */
     @command("nos")
     public onNosCommand(playerId, params[]) {
-        if (GetPlayerState(playerId) != PLAYER_STATE_DRIVER) {
+        if (Player(playerid)->isAdministrator() && IsPlayerInAnyVehicle(playerid)) {}
+        
+        else if (GetPlayerState(playerId) != PLAYER_STATE_DRIVER) {
             SendClientMessage(playerId, Color::Error, "Since you aren't the driver of a vehicle, you can't attach nos.");
             return 1;
         }
@@ -32,7 +34,7 @@ class NitroHandler {
             modelId = GetVehicleModel(playerVehicleId);
 
         // Let's take a look if the vehicle is nitro-applicable.
-        if (VehicleModel(modelId)->isNitroInjectionAvailable() == false) {
+        else if (VehicleModel(modelId)->isNitroInjectionAvailable() == false) {
             SendClientMessage(playerId, Color::Error, "The vehicle you are currently driving can't have nos attached.");
             return 1;
         }
@@ -42,12 +44,12 @@ class NitroHandler {
 
         // Quick and dirty fix/hack to make sure strcmp does it work good (strcmp is always 0 when
         // one of the input-strings is empty
-        if (Command->stringParameter(params, 0, parameterValue, sizeof(parameterValue)) <= 0) {
+        else if (Command->stringParameter(params, 0, parameterValue, sizeof(parameterValue)) <= 0) {
             parameterValue = "null";
         }
 
         // Set to a high amount so we can easier check if the player wants to buy infinite nitro
-        if (!strcmp(parameterValue, "inf", true) || !strcmp(parameterValue, "infinite", true)) {
+        else if (!strcmp(parameterValue, "inf", true) || !strcmp(parameterValue, "infinite", true)) {
             amountOfNitro = 999;
         }
 
