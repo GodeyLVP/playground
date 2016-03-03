@@ -55,6 +55,10 @@ class TaxAgency {
 
         if (GetPlayerMoney(playerId) >= MinimumUnregisteredPlayerTaxableAmount && Player(playerId)->isRegistered() == false)
             return true;
+            
+        // No tax will be charged for admins!
+        if (Player(playerId)->isAdministrator() == true)
+            return true;
 
         return false;
     }
@@ -71,11 +75,6 @@ class TaxAgency {
      */
     @list(MinuteTimerPerPlayer)
     public collectPlayerTaxes(playerId) {
-        // No tax will be charged for admins!
-        if (Player(playerId)->isAdministrator() == true) {
-            return true;
-        }
-        
         if (this->isPlayerEligableForTaxCollection(playerId)) {
             if (m_minutesPlayerHasHeldOnToCash[playerId] >= MinutesUntilTaxCollection) {
                 new taxAmount = this->applyTaxesForPlayerAndReturnAmount(playerId, TaxPercentageBaseline),
